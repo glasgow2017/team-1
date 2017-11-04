@@ -8,10 +8,7 @@ function y(){
 function x() {
     var x = document.getElementsByTagName("img");
     var body = document.getElementsByTagName("body");
-    var watson =  requires("imageReconition.js");
-    if(watson==null)
-        console.log("Maybe it isn't elementary");
-
+ 
     for (var i = 0; i < x.length; i++) {
         var plaint = document.createElement("p");
         plaint.innerHTML = "GREG IS LOVE";
