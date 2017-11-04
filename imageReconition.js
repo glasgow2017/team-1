@@ -1,4 +1,12 @@
 //Expects the url of the image
+const express = require('express');
+
+var cors = require('cors');
+
+const app = express();
+
+app.use(cors())
+
 var watson = require('watson-developer-cloud');
 var visual_recgnition = watson.visual_recognition({
     api_key: '29473d2dd44e89a41580ce0d803fac7421910d74',
@@ -10,13 +18,15 @@ var visual_recgnition = watson.visual_recognition({
 
 var http = require('http');
 
-http.createServer(function (req, res) {
+app.get('/', function (req, res) {
     console.log(req);
     convertImageToText('http://cdn3-www.dogtime.com/assets/uploads/gallery/' +
         'airedale-terrier-dog-breed-pictures/1-play.jpg', callback, res);
-    // res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.writeHead(200, {'Content-Type': 'text/plain'});
     // res.end('Server listening on port 8080');
 }).listen(8080);
+
+console.log('Server listening on port 8080')
 
 function callback(str, res){
     res.end(str);
