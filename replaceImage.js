@@ -2,8 +2,8 @@
 
 var watson_server = new XMLHttpRequest();
 
-watson_server.open("POST", "http://localhost:8080", true);
-watson_server.setRequestHeader("Content-type","application/json");
+watson_server.open("POST", "http://localhost:8080/image", true);
+watson_server.setRequestHeader("Content-type","text/plain");
 
 watson_server.onreadystatechange = function(x){
     if(watson_server.readyState == XMLHttpRequest.DONE && watson_server.status == 200){
@@ -12,7 +12,9 @@ watson_server.onreadystatechange = function(x){
     }
 }
 
-watson_server.send({sending:"yes"});
+var lovelyObject4u = "blahdiblahdiblah";
+
+watson_server.send(lovelyObject4u);
 
 
 //For some reason, all images are retrieved but they're null after the halfway point. Please ignore this hack.
