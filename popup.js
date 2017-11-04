@@ -24,18 +24,18 @@ function getCurrentTabUrl(callback) {
         // exactly one tab.
         var tab = tabs[0];
 
-    // A tab is a plain object that provides information about the tab.
-    // See https://developer.chrome.com/extensions/tabs#type-Tab
-    var url = tab.url;
+        // A tab is a plain object that provides information about the tab.
+        // See https://developer.chrome.com/extensions/tabs#type-Tab
+        var url = tab.url;
 
-    // tab.url is only available if the "activeTab" permission is declared.
-    // If you want to see the URL of other tabs (e.g. after removing active:true
-    // from |queryInfo|), then the "tabs" permission is required to see their
-    // "url" properties.
-    console.assert(typeof url == 'string', 'tab.url should be a string');
+        // tab.url is only available if the "activeTab" permission is declared.
+        // If you want to see the URL of other tabs (e.g. after removing active:true
+        // from |queryInfo|), then the "tabs" permission is required to see their
+        // "url" properties.
+        console.assert(typeof url == 'string', 'tab.url should be a string');
 
-    callback(url);
-});
+        callback(url);
+    });
 
     // Most methods of the Chrome extension APIs are asynchronous. This means that
     // you CANNOT do something like this:
@@ -53,7 +53,15 @@ function getCurrentTabUrl(callback) {
  * @param {string} color The new background color.
  */
 function changeBackgroundColor(color) {
-    var script = 'document.body.style.backgroundColor="' + color + '";';
+
+    var script =  "   var x = document.getElementsByTagName(\"p\");\n" +
+        "  " +
+        " for(i=0;i<x.length;i++){\n" +
+        "    var plaint = document.createElement(\"p\");\n" +
+        "    plaint.innerText=\"Greg\";\n" +
+        "\tx.item(i).parentNode.replaceChild(plaint, x.item(i));\n" +
+        "    console.log(i);\n" +
+        "}   ";
     // See https://developer.chrome.com/extensions/tabs#method-executeScript.
     // chrome.tabs.executeScript allows us to programmatically inject JavaScript
     // into a page. Since we omit the optional first argument "tabId", the script
@@ -77,7 +85,7 @@ function getSavedBackgroundColor(url, callback) {
     // fails.
     chrome.storage.sync.get(url, (items) => {
         callback(chrome.runtime.lastError ? null : items[url]);
-});
+    });
 }
 
 /**
@@ -105,22 +113,23 @@ function saveBackgroundColor(url, color) {
 // user devices.
 document.addEventListener('DOMContentLoaded', () => {
     getCurrentTabUrl((url) => {
-    var dropdown = document.getElementById('dropdown');
+        var dropdown = document.getElementById('dropdown');
 
-    // Load the saved background color for this page and modify the dropdown
-    // value, if needed.
-    getSavedBackgroundColor(url, (savedColor) => {
-        if (savedColor) {
-            changeBackgroundColor(savedColor);
-            dropdown.value = savedColor;
-        }
+        // Load the saved background color for this page and modify the dropdown
+        // value, if needed.
+        getSavedBackgroundColor(url, (savedColor) => {
+            if (savedColor) {
+                changeBackgroundColor(savedColor);
+                dropdown.value = savedColor;
+            }
+        });
+
+
+        // Ensure the background color is changed and saved when the dropdown
+        // selection changes.
+        dropdown.addEventListener('change', () => {
+            changeBackgroundColor(dropdown.value);
+            saveBackgroundColor(url, dropdown.value);
+        });
     });
-
-    // Ensure the background color is changed and saved when the dropdown
-    // selection changes.
-    dropdown.addEventListener('change', () => {
-        changeBackgroundColor(dropdown.value);
-    saveBackgroundColor(url, dropdown.value);
-});
-});
 });
