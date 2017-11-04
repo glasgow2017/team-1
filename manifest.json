@@ -13,6 +13,7 @@
   },
   "permissions": [
     "activeTab",
-    "storage"
+    "storage",
+    "tts"
   ]
 }
