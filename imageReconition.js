@@ -14,8 +14,7 @@ var bodyParser = require('body-parser');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.text());
 
 var watson = require('watson-developer-cloud');
 var visual_recgnition = watson.visual_recognition({
