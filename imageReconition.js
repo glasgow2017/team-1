@@ -5,14 +5,30 @@ var visual_recgnition = watson.visual_recognition({
     version: 'v3',
     version_date: '2016-05-20'
 });
+//
+// var Promise = require();
 
+var http = require('http');
 
-exports.convertImageToText = function (imageURLToString) {
-    visual_recgnition.classify({url:imageURLToString}, function (err, res) {
+http.createServer(function (req, res) {
+    console.log(req);
+    convertImageToText('http://cdn3-www.dogtime.com/assets/uploads/gallery/' +
+        'airedale-terrier-dog-breed-pictures/1-play.jpg', callback, res);
+    // res.writeHead(200, {'Content-Type': 'text/plain'});
+    // res.end('Server listening on port 8080');
+}).listen(8080);
+
+function callback(str, res){
+    res.end(str);
+}
+
+convertImageToText = function (imageURLToString, callback, res) {
+
+    visual_recgnition.classify({url:imageURLToString}, function (err, resp) {
         if (err)
             console.log(err);
         else
-            return parseReturnedValue(res);//JSON.stringify(res, null, 2));
+            callback(parseReturnedValue(resp), res);//JSON.stringify(res, null, 2));
     });
 }
 
@@ -29,6 +45,6 @@ function parseReturnedValue(response) {
 }
 
 
-convertImageToText('http://cdn3-www.dogtime.com/assets/uploads/gallery/airedale-terrier-dog-breed-pictures/1-play.jpg');
+
 
 
