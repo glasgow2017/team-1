@@ -13,8 +13,12 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://www.pintrest.com/*"],
-      "js": ["summary.js"]
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": ["summary.js"],
+      "run_at": "document_end"
     }
   ],
   "background": {
@@ -23,6 +27,7 @@
   "permissions": [
     "activeTab",
     "storage",
-    "tts"
+    "tts",
+    "http://*/*"
   ]
 }
