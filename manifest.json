@@ -13,11 +13,13 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "http://*/*",
-        "https://*/*"
-      ],
-      "js": ["summary.js"],
+      "matches": ["http://www.pinterest.com/*"],
+      "js": ["pinSumm.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["http://www.instagram.com/*"],
+      "js": ["instaSumm.js"],
       "run_at": "document_end"
     }
   ],
