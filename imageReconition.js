@@ -6,4 +6,12 @@ var visual_recgnition = watson.visual_recognition({
 //Expects the url of the image
 function convertImageToText(imageURLToString){
     return "Yeah you called right";
+    var params = {
+        image_file : fs.createReadStream(imageURLToString)
+    };
+
+}
+
+function parseReturnedValue(jsonReturned){
+
 }
