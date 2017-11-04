@@ -1,5 +1,5 @@
 //Expects the url of the image
-var request=require('request');
+var request = require('request');
 var fs = require('fs');
 var watson = require('watson-developer-cloud');
 var visual_recgnition = watson.visual_recognition({
@@ -25,21 +25,24 @@ function parseReturnedValue(response) {
     console.log(JSON.stringify(response, null, 2));
     var str = "";
     console.log(JSON.stringify(response.images[0].classifiers[0].classes));
-    for (thing in response.images[0].classifiers[0].classes){
+    for (thing in response.images[0].classifiers[0].classes) {
         console.log(JSON.stringify(thing, null, 2));
     }
 }
 
-function getImageFromURL(url){
+function getImageFromURL(url) {
     var urlParse = url.split("/")
     console.log(url);
     console.log(urlParse[urlParse.length - 1]);
-    var x =request(url, function (err, resp, body){
-        console.log(body);
-        return (fs.createReadStream(urlParse[urlParse.length - 1]));
+    var x = request(url, function (err, resp, body) {
+        if (err)
+            return;
+        return (convertFileToStream(urlParse[urlParse.length - 1]));
     });
 }
 
-
-convertImageToText('./cat.jpeg');
+function convertFileToStream(file){ //This blows up #RemeberRemember
+    return fs.createReadStream(file);
+}
+convertImageToText('http://cdn3-www.dogtime.com/assets/uploads/gallery/airedale-terrier-dog-breed-pictures/1-play.jpg');
 
