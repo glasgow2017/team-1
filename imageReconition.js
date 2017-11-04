@@ -2,7 +2,6 @@
 
 var fs = require('fs');
 
-
 var watson = require('watson-developer-cloud');
 var visual_recgnition = watson.visual_recognition({
     api_key: './apiKey.json',
@@ -26,5 +25,10 @@ function parseReturnedValue(jsonReturned) {
     console.log(jsonReturned);
 }
 
+function getImageFromURL(url){
+    var urlParse = url.split("/")
+    return request(url).pipe(fs.createReadStream(urlParse[urlParse.size - 1]));
+}
 
-convertImageToText('./cat.jpeg');
+
+convertImageToText('http://cdn3-www.dogtime.com/assets/uploads/gallery/airedale-terrier-dog-breed-pictures/1-play.jpg');
