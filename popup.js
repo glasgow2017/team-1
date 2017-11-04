@@ -22,6 +22,6 @@ function runReplaceImage() {
 
 document.addEventListener('DOMContentLoaded', () => {
     getCurrentTabUrl((url) => {
-        runReplaceImage(); 
-           });
+        runReplaceImage();
+    });
 });
