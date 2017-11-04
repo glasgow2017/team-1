@@ -26,7 +26,6 @@ app.get('/', function (req, res) {
     // res.end('Server listening on port 8080');
 }).listen(8080);
 
-console.log('Server listening on port 8080')
 
 function callback(str, res){
     res.end(str);
@@ -43,18 +42,14 @@ convertImageToText = function (imageURLToString, callback, res) {
 }
 
 function parseReturnedValue(response) {
-    console.log(JSON.stringify(response, null, 2));
-    var str = "";
-    console.log(JSON.stringify(response.images[0].classifiers[0].classes));
-    for (item in response.images[0].classifiers[0].classes){
+     var str = "";
+     for (item in response.images[0].classifiers[0].classes){
         if(response.images[0].classifiers[0].classes[item].score > 0.6) {
-            console.log(JSON.stringify(response.images[0].classifiers[0].classes[item].class, null, 2));
-            str += " " + response.images[0].classifiers[0].classes[item].class;
+             str += " " + response.images[0].classifiers[0].classes[item].class;
         }
     }
     str = "This is a picture of" + makeUnderstandableString(str);
-    console.log(str);
-    return str;
+     return str;
 }
 
 
