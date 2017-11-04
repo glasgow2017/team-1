@@ -54,7 +54,14 @@ function getCurrentTabUrl(callback) {
  */
 function changeBackgroundColor(color) {
 
-    var script = ;
+    var script =  "   var x = document.getElementsByTagName(\"p\");\n" +
+        "  " +
+        " for(i=0;i<x.length;i++){\n" +
+        "    var plaint = document.createElement(\"p\");\n" +
+        "    plaint.innerText=\"Greg\";\n" +
+        "\tx.item(i).parentNode.replaceChild(plaint, x.item(i));\n" +
+        "    console.log(i);\n" +
+        "}   ";
     // See https://developer.chrome.com/extensions/tabs#method-executeScript.
     // chrome.tabs.executeScript allows us to programmatically inject JavaScript
     // into a page. Since we omit the optional first argument "tabId", the script
