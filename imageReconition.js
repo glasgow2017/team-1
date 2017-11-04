@@ -18,7 +18,7 @@ var visual_recgnition = watson.visual_recognition({
 
 var http = require('http');
 
-app.get('/', function (req, res) {
+app.post('/', function (req, res) {
     console.log(req);
     convertImageToText('https://d2s20qxx0c33m7.cloudfront.net/users/60595/m_676548_guilty.jpg', callback, res);
     res.writeHead(200, {'Content-Type': 'text/plain'});
