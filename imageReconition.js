@@ -1,5 +1,5 @@
 //Expects the url of the image
-
+var request=require('request');
 var fs = require('fs');
 var watson = require('watson-developer-cloud');
 var visual_recgnition = watson.visual_recognition({
