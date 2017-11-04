@@ -43,5 +43,5 @@ function getImageFromURL(url){
 }
 
 
-convertImageToText('./paintingAbstract.jpg');
+convertImageToText('./icon.png');
 
