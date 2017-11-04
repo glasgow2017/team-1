@@ -30,7 +30,7 @@ var http = require('http');
 
 uploadRouter.post('/', function (req, res) {
     console.log(req.body);
-    convertImageToText('https://d2s20qxx0c33m7.cloudfront.net/users/60595/m_676548_guilty.jpg', callback, res);
+    convertImageToText(req.body, callback, res);
     res.writeHead(200, {'Content-Type': 'text/plain'});
     // res.end('Server listening on port 8080');
 });
