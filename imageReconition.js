@@ -11,7 +11,7 @@ var visual_recgnition = watson.visual_recognition({
 
 function convertImageToText(imageURLToString) {
     var params = {
-        image_file: getImageFromURL(imageURLToString)
+        image_file: fs.createReadStream(imageURLToString)
     };
     visual_recgnition.classify(params, function (err, res) {
         if (err)
@@ -23,11 +23,13 @@ function convertImageToText(imageURLToString) {
 
 function parseReturnedValue(response) {
     console.log(JSON.stringify(response, null, 2));
-    var str = "";
+    var str = "This is a picture of";
     console.log(JSON.stringify(response.images[0].classifiers[0].classes));
-    for (thing in response.images[0].classifiers[0].classes) {
-        console.log(JSON.stringify(thing, null, 2));
+    for (item in response.images[0].classifiers[0].classes){
+        console.log(JSON.stringify(response.images[0].classifiers[0].classes[item].class, null, 2));
+        str += " " + response.images[0].classifiers[0].classes[item].class;
     }
+    return str;
 }
 
 function getImageFromURL(url) {
@@ -45,4 +47,5 @@ function convertFileToStream(file){ //This blows up #RemeberRemember
     return fs.createReadStream(file);
 }
 convertImageToText('http://cdn3-www.dogtime.com/assets/uploads/gallery/airedale-terrier-dog-breed-pictures/1-play.jpg');
+
 
