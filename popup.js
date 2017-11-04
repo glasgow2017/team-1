@@ -23,6 +23,5 @@ function runReplaceImage() {
 document.addEventListener('DOMContentLoaded', () => {
     getCurrentTabUrl((url) => {
         runReplaceImage();
-        chrome.tts.speak('Hi, Jordan, Welcome to this shit.');
     });
 });

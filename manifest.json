@@ -11,6 +11,12 @@
     "default_icon": "ImageDescriber.png", //Icon made by Surb from www.flaticon.com
     "default_popup": "popup.html"
   },
+  "content_scripts": [
+    {
+      "matches": ["https://www.pintrest.com/*"],
+      "js": ["summary.js"]
+    }
+  ],
   "permissions": [
     "activeTab",
     "storage",
