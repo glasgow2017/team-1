@@ -1,14 +1,13 @@
 //Expects the url of the image
 
 var fs = require('fs');
-
-
 var watson = require('watson-developer-cloud');
 var visual_recgnition = watson.visual_recognition({
-    api_key: './apiKey.json',
+    api_key: '29473d2dd44e89a41580ce0d803fac7421910d74',
     version: 'v3',
     version_date: '2016-05-20'
 });
+
 
 function convertImageToText(imageURLToString) {
     var params = {
@@ -28,3 +27,4 @@ function parseReturnedValue(jsonReturned) {
 
 
 convertImageToText('./cat.jpeg');
+
