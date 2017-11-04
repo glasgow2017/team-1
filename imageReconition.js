@@ -17,12 +17,17 @@ function convertImageToText(imageURLToString) {
         if (err)
             console.log(err);
         else
-            return parseReturnedValue(JSON.stringify(res, null, 2));
+            return parseReturnedValue(res);//JSON.stringify(res, null, 2));
     });
 }
 
-function parseReturnedValue(jsonReturned) {
-    console.log(jsonReturned);
+function parseReturnedValue(response) {
+    console.log(JSON.stringify(response, null, 2));
+    var str = "";
+    console.log(JSON.stringify(response.images[0].classifiers[0].classes));
+    for (thing in response.images[0].classifiers[0].classes){
+        console.log(JSON.stringify(thing, null, 2));
+    }
 }
 
 function getImageFromURL(url){
