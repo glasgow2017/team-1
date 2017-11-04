@@ -1,3 +1,5 @@
+console.log("There was an attempt");
+
 y();
 
 function y(){
@@ -12,7 +14,7 @@ function x() {
 
     for (var i = 0; i < x.length; i++) {
         var plaint = document.createElement("p");
-        plaint.innerHTML = watson.convertImageToString(document.URL + x.item(i).baseURI);
+        plaint.innerHTML = "GREG IS LOVE";
 
         x.item(i).parentNode.replaceChild(plaint, x.item(i));
         console.log(i);
