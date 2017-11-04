@@ -11,7 +11,7 @@ var visual_recgnition = watson.visual_recognition({
 
 function convertImageToText(imageURLToString) {
     var params = {
-        image_file: fs.createReadStream(imageURLToString)
+        image_file: getImageFromURL(imageURLToString)
     };
     visual_recgnition.classify(params, function (err, res) {
         if (err)
@@ -26,8 +26,13 @@ function parseReturnedValue(jsonReturned) {
 }
 
 function getImageFromURL(url){
-    var urlParse = url.split("/");
-    return request(url).pipe(fs.createReadStream(urlParse[urlParse.size - 1]));
+    var urlParse = url.split("/")
+    console.log(url);
+    console.log(urlParse[urlParse.length - 1]);
+    var x =request(url, function (err, resp, body){
+        console.log(body);
+        return (fs.createReadStream(urlParse[urlParse.length - 1]));
+    });
 }
 
 
