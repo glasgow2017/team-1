@@ -20,12 +20,12 @@ var http = require('http');
 
 app.get('/', function (req, res) {
     console.log(req);
-    convertImageToText('http://cdn3-www.dogtime.com/assets/uploads/gallery/' +
-        'airedale-terrier-dog-breed-pictures/1-play.jpg', callback, res);
+    convertImageToText('https://d2s20qxx0c33m7.cloudfront.net/users/60595/m_676548_guilty.jpg', callback, res);
     res.writeHead(200, {'Content-Type': 'text/plain'});
     // res.end('Server listening on port 8080');
 }).listen(8080);
 
+console.log('Server listening on port 8080')
 
 function callback(str, res){
     res.end(str);
@@ -42,14 +42,18 @@ convertImageToText = function (imageURLToString, callback, res) {
 }
 
 function parseReturnedValue(response) {
-     var str = "";
-     for (item in response.images[0].classifiers[0].classes){
+    console.log(JSON.stringify(response, null, 2));
+    var str = "";
+    console.log(JSON.stringify(response.images[0].classifiers[0].classes));
+    for (item in response.images[0].classifiers[0].classes){
         if(response.images[0].classifiers[0].classes[item].score > 0.6) {
-             str += " " + response.images[0].classifiers[0].classes[item].class;
+            console.log(JSON.stringify(response.images[0].classifiers[0].classes[item].class, null, 2));
+            str += " " + response.images[0].classifiers[0].classes[item].class;
         }
     }
     str = "This is a picture of" + makeUnderstandableString(str);
-     return str;
+    console.log(str);
+    return str;
 }
 
 
