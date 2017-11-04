@@ -11,9 +11,23 @@
     "default_icon": "ImageDescriber.png", //Icon made by Surb from www.flaticon.com
     "default_popup": "popup.html"
   },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": ["summary.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
   "permissions": [
     "activeTab",
     "storage",
-    "tts"
+    "tts",
+    "http://*/*"
   ]
 }
