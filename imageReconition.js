@@ -34,12 +34,15 @@ convertImageToText = function (imageURLToString, callback, res) {
 
 function parseReturnedValue(response) {
     console.log(JSON.stringify(response, null, 2));
-    var str = "This is a picture of";
+    var str = "";
     console.log(JSON.stringify(response.images[0].classifiers[0].classes));
     for (item in response.images[0].classifiers[0].classes){
-        console.log(JSON.stringify(response.images[0].classifiers[0].classes[item].class, null, 2));
-        str += " " + response.images[0].classifiers[0].classes[item].class;
+        if(response.images[0].classifiers[0].classes[item].score > 0.6) {
+            console.log(JSON.stringify(response.images[0].classifiers[0].classes[item].class, null, 2));
+            str += " " + response.images[0].classifiers[0].classes[item].class;
+        }
     }
+    str = "This is a picture of" + makeUnderstandableString(str);
     console.log(str);
     return str;
 }
@@ -47,4 +50,21 @@ function parseReturnedValue(response) {
 
 
 
-
+function makeUnderstandableString(string){
+    var strSplit = string.split(" ");
+    for(var i = 0; i < strSplit.length; i ++){
+        for(var k = 0; k < strSplit.length; k ++){
+            if(!(i === k)){
+                if(strSplit[i] === strSplit[k]){
+                    strSplit[k] = "";
+                }
+            }
+        }
+    }
+    var returnable = "";
+    for(var i = 0; i < strSplit.length; i ++){
+        if(!(strSplit[i] === ""))
+        returnable += " " + strSplit[i];
+    }
+    return returnable;
+}
