@@ -7,7 +7,7 @@ var visual_recgnition = watson.visual_recognition({
 });
 
 
-function convertImageToText(imageURLToString) {
+exports.convertImageToText = function (imageURLToString) {
     visual_recgnition.classify({url:imageURLToString}, function (err, res) {
         if (err)
             console.log(err);
@@ -15,6 +15,7 @@ function convertImageToText(imageURLToString) {
             return parseReturnedValue(res);//JSON.stringify(res, null, 2));
     });
 }
+
 function parseReturnedValue(response) {
     console.log(JSON.stringify(response, null, 2));
     var str = "This is a picture of";
@@ -23,6 +24,7 @@ function parseReturnedValue(response) {
         console.log(JSON.stringify(response.images[0].classifiers[0].classes[item].class, null, 2));
         str += " " + response.images[0].classifiers[0].classes[item].class;
     }
+    console.log(str);
     return str;
 }
 
