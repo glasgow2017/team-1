@@ -5,7 +5,17 @@ var cors = require('cors');
 
 const app = express();
 
-app.use(cors())
+var router = express.Router();
+var uploadRouter = express.Router();
+
+app.use(cors());
+
+var bodyParser = require('body-parser');
+
+// configure app to use bodyParser()
+// this will let us get the data from a POST
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 var watson = require('watson-developer-cloud');
 var visual_recgnition = watson.visual_recognition({
@@ -18,12 +28,23 @@ var visual_recgnition = watson.visual_recognition({
 
 var http = require('http');
 
-app.post('/', function (req, res) {
-    console.log(req);
+uploadRouter.post('/', function (req, res) {
+    console.log(req.body);
     convertImageToText('https://d2s20qxx0c33m7.cloudfront.net/users/60595/m_676548_guilty.jpg', callback, res);
     res.writeHead(200, {'Content-Type': 'text/plain'});
     // res.end('Server listening on port 8080');
-}).listen(8080);
+});
+
+app.listen(8080);
+
+app.use('/analysis', router);
+
+
+app.use('/image', uploadRouter);
+
+router.get('/', function(req, res) {
+    res.json({ message: 'hooray! welcome to our api!' });
+});
 
 console.log('Server listening on port 8080')
 
