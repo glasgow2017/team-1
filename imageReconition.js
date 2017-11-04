@@ -15,7 +15,7 @@ function convertImageToText(imageURLToString) {
     };
     visual_recgnition.classify(params, function (err, res) {
         if (err)
-            console.log(err)
+            console.log(err);
         else
             return parseReturnedValue(JSON.stringify(res, null, 2));
     });
@@ -23,6 +23,11 @@ function convertImageToText(imageURLToString) {
 
 function parseReturnedValue(jsonReturned) {
     console.log(jsonReturned);
+}
+
+function getImageFromURL(url){
+    var urlParse = url.split("/");
+    return request(url).pipe(fs.createReadStream(urlParse[urlParse.size - 1]));
 }
 
 
