@@ -1,4 +1,4 @@
-
+//var watson = require("./imageReconition.js");
 removeImages();
        
 function removeImages(){
@@ -11,7 +11,7 @@ function single_run() {
     for (var i = 0; i < x.length; i++) {
         var plaint = document.createElement("p");
           
-        console.log("Maybe it isn't elementary");
+        var link = document.URL + x.item(i).getURI();
 
         plaint.innerHTML = "GREG IS LOVE";
         x.item(i).parentNode.replaceChild(plaint, x.item(i));
