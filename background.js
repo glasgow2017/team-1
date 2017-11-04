@@ -1,8 +1,11 @@
 
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
+
+
+
         setTimeout(function () {
-            chrome.tts.speak("This is a beautiful art page")
+            chrome.tts.speak(request.greeting)
         }, 10000);
         setTimeout(function () {
             chrome.tabs.executeScript({
@@ -10,10 +13,9 @@ chrome.runtime.onMessage.addListener(
             });
         }, 12000);
         //chrome.tts.speak("Art expooooooooooooooo");
-
-        console.log(sender.tab ?
-            "from a content script:" + sender.tab.url :
-            "from the extension");
-        if (request.greeting == "hello")
+        //
+        // console.log(sender.tab ?
+        //     "from a content script:" + sender.tab.url :
+        //     "from the extension");
             sendResponse({farewell: "Summary"});
     });
