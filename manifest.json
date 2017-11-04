@@ -17,6 +17,9 @@
       "js": ["summary.js"]
     }
   ],
+  "background": {
+    "scripts": ["background.js"]
+  },
   "permissions": [
     "activeTab",
     "storage",
