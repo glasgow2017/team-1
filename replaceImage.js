@@ -1,21 +1,20 @@
-console.log("There was an attempt");
-
-y();
-
-function y(){
-    while(x()>0);
+//var watson = require("./imageReconition.js");
+removeImages();
+       
+function removeImages(){
+    while(single_run()>0);
 }
-function x() {
+function single_run() {
     var x = document.getElementsByTagName("img");
     var body = document.getElementsByTagName("body");
  
     for (var i = 0; i < x.length; i++) {
         var plaint = document.createElement("p");
-        plaint.innerHTML = "GREG IS LOVE";
+          
+        var link = document.URL + x.item(i).getURI();
 
+        plaint.innerHTML = "GREG IS LOVE";
         x.item(i).parentNode.replaceChild(plaint, x.item(i));
-        console.log(i);
-    }
-    console.log("run finished");
-    return x.length;
+     }
+     return x.length;
 }
