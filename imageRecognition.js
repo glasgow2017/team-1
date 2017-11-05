@@ -39,10 +39,10 @@ convertImageToText = function (imageURLToString, callback, res) {
 
 function parseReturnedValue(response) {
      var str = "";
-     for (item in response.images[0].classifiers[0].classes){
-        if(response.images[0].classifiers[0].classes[item].score > 0.6) {
-            console.log(JSON.stringify(response.images[0].classifiers[0].classes[item].class, null, 2));
-            str += " " + response.images[0].classifiers[0].classes[item].class;
+     var simplifier = response.images[0].classifiers[0].classes;
+     for (item in simplifier){
+        if(simplifier[item].score > 0.6) {
+            str += " " + simplifier[item].class;
         }
     }
     str = "This is a picture of" + makeUnderstandableString(str);
