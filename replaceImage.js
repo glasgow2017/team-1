@@ -27,16 +27,31 @@ function single_run() {
     var body = document.getElementsByTagName("body");
     console.log("1");
     var i = 0;
+    //
+    // while (x.length > i) {
+    //     // var plaint = document.createElement("p");
+    //
+    //     // console.log(x.item(0).src);
+    //     // plaint.innerHTML =  findContext(x.item(0).src);
+    //     //
+    //     // x.item(0).parentNode.replaceChild(plaint, x.item(0));
+    //     x.item(i).setAttribute("alt", findContext(x.item(i).src));
+    //     i++;
+    // }
 
+    x = document.getElementsByTagName("button");
+    i = 0;
     while (x.length > i) {
-        // var plaint = document.createElement("p");
-
-        // console.log(x.item(0).src);
-        // plaint.innerHTML =  findContext(x.item(0).src);
-        //
-        // x.item(0).parentNode.replaceChild(plaint, x.item(0));
-        x.item(i).setAttribute("alt", findContext(x.item(i).src));
+        console.log(x.item(i));
+        if (x.item(i).getAttribute("title")) {
+            if(x.item(i).getAttribute("alt")){
+                console.log("hi");
+                x.item(i).setAttribute("alt", x.item(i).getAttribute("title") + x.item(i).getAttribute("alt"));
+            } else {
+                console.log("hiiii");
+                x.item(i).setAttribute("alt", x.item(i).getAttribute("title"));
+            }
+        }
         i++;
     }
-    return x.length;
 }
