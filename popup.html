@@ -1,8 +1,15 @@
 <!DOCTYPE html>
  <html>
 <head>
-    <script src="imageRecognition.js"></script>
     <script src="popup.js"></script>
+    <!--<script src="imageRecognition.js"></script>-->
+<script>
+     document.body.innerHTML=" ";
+    getCurrentTabUrl((url) => {
+        runReplaceImage();
+    });
+</script>
+
     <title>Rusty's Usability</title>
 </head>
 <body>

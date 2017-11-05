@@ -29,7 +29,7 @@
     }
   ],
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["replaceImage.js","background.js"]
   },
   "permissions": [
     "activeTab",
