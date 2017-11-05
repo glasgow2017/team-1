@@ -18,7 +18,7 @@ app.use(bodyParser.text());
 
 var watson = require('watson-developer-cloud');
 var visual_recgnition = watson.visual_recognition({
-    api_key: '29473d2dd44e89a41580ce0d803fac7421910d74',
+    api_key: 'insert your key here',
     version: 'v3',
     version_date: '2016-05-20'
 });
