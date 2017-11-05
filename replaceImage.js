@@ -25,31 +25,23 @@ single_run();
 function single_run() {
     var x = document.getElementsByTagName("img");
     var body = document.getElementsByTagName("body");
-    console.log("1");
-    var i = 0;
-
-    while (x.length > i) {
-        // var plaint = document.createElement("p");
-
-        // console.log(x.item(0).src);
-        // plaint.innerHTML =  findContext(x.item(0).src);
-        //
-        // x.item(0).parentNode.replaceChild(plaint, x.item(0));
-        x.item(i).setAttribute("alt", findContext(x.item(i).src));
-        i++;
+   
+    for (var i=0;i<x.length;i++) {
+        x.item(i).setAttribute("alt", findContext(x.item(i).src)); 
     }
+}
 
-    x = document.getElementsByTagName("button");
-    i = 0;
-    while (x.length > i) {
-        console.log(x.item(i));
+function addTitleToAltButton(){
+    var x = document.getElementsByTagName("button");
+     
+    for(var i=0;i<x.length;i++)  { 
         if (x.item(i).getAttribute("title")) {
             if(x.item(i).getAttribute("alt")){
                 x.item(i).setAttribute("alt", x.item(i).getAttribute("title") + x.item(i).getAttribute("alt"));
-            } else {
+           } else {
                 x.item(i).setAttribute("alt", x.item(i).getAttribute("title"));
             }
         }
-        i++;
-    }
+      }
 }
+ 
