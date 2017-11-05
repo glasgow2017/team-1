@@ -1,9 +1,9 @@
 var globalHatred = "";
 
-function findUnknownContext(url4u, type_of_request) {
+function findContext(url4u) {
     var watson_server = new XMLHttpRequest();
     var stringRep = "";
-    watson_server.open("POST", type_of_request, false);
+    watson_server.open("POST", "http://localhost:8080/image", false);
     watson_server.setRequestHeader("Content-type", "text/plain");
     watson_server.onreadystatechange = function (x) {
         if (watson_server.readyState == XMLHttpRequest.DONE && watson_server.status == 200) {
@@ -14,40 +14,38 @@ function findUnknownContext(url4u, type_of_request) {
         }
     };
 
-    watson_server.send(type_of_request);
     watson_server.send(url4u);//This is the error
     return globalHatred;
+
 }
 
-function findSecureContext(url4u){
-    return findContext(url4u, "https", url4u);
-}
-function findContext(url4u){
-    return findUnknownContext(url4u, "http",url4u);
-}
 //For some reason, all images are retrieved but they're null after the halfway point. Please ignore this hack.
 single_run();
 
 function single_run() {
     var x = document.getElementsByTagName("img");
     var body = document.getElementsByTagName("body");
-   
-    for (var i=0;i<x.length;i++) {
-        x.item(i).setAttribute("alt", findContext(x.item(i).src)); 
-    }
-}
+    console.log("1");
+    var i = 0;
 
-function addTitleToAltButton(){
-    var x = document.getElementsByTagName("button");
-     
-    for(var i=0;i<x.length;i++)  { 
+    while (x.length > i) {
+        x.item(i).setAttribute("alt", findContext(x.item(i).src));
+        i++;
+    }
+
+    x = document.getElementsByTagName("button");
+    i = 0;
+    while (x.length > i) {
+        console.log(x.item(i));
         if (x.item(i).getAttribute("title")) {
             if(x.item(i).getAttribute("alt")){
+                console.log("hi");
                 x.item(i).setAttribute("alt", x.item(i).getAttribute("title") + x.item(i).getAttribute("alt"));
-           } else {
+            } else {
+                console.log("hiiii");
                 x.item(i).setAttribute("alt", x.item(i).getAttribute("title"));
             }
         }
-      }
+        i++;
+    }
 }
- 
