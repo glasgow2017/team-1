@@ -23,7 +23,7 @@
       "run_at": "document_end"
     },
     {
-      "matches": ["https://www.artweb.com/*"],
+      "matches": ["http://www.painters-online.co.uk/*"],
       "js": ["pageDescripters/artwebSumm.js"],
       "run_at": "document_end"
     }
