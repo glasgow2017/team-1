@@ -13,13 +13,18 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://www.pinterest.com/*"],
-      "js": ["pinSumm.js"],
+      "matches": ["https://www.pinterest.com/*"],
+      "js": ["pageDescripters/pinSumm.js"],
       "run_at": "document_end"
     },
     {
-      "matches": ["http://www.instagram.com/*"],
-      "js": ["instaSumm.js"],
+      "matches": ["https://www.instagram.com/*"],
+      "js": ["pageDescripters/instaSumm.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["https://www.artweb.com/*"],
+      "js": ["pageDescripters/artwebSumm.js"],
       "run_at": "document_end"
     }
   ],

@@ -1,13 +1,14 @@
 
 
-var assoc = {"instagram":{"desc": "tbc"},"pinterest":{"desc": "tbc2"}};
 
 chrome.runtime.onMessage.addListener(
 
     function (request, sender, sendResponse) {
 
+
+        var assoc = {"instagram":"Instagram, welcome ","pinterest":"Pinterest, welcome2", "artweb":"Art Web, this is art"};
         setTimeout(function () {
-            chrome.tts.speak()
+            chrome.tts.speak(assoc[request.greeting])
         }, 10000);
         setTimeout(function () {
             chrome.tabs.executeScript({
@@ -19,5 +20,5 @@ chrome.runtime.onMessage.addListener(
         // console.log(sender.tab ?
         //     "from a content script:" + sender.tab.url :
         //     "from the extension");
-            sendResponse({farewell: "Summary"});
+            sendResponse({farewell: assoc[request.greeting]});
     });
