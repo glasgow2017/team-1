@@ -1,9 +1,9 @@
 var globalHatred = "";
 
-function findContext(url4u) {
+function findUnknownContext(url4u, type_of_request) {
     var watson_server = new XMLHttpRequest();
     var stringRep = "";
-    watson_server.open("POST", "http://localhost:8080/image", false);
+    watson_server.open("POST", type_of_request, false);
     watson_server.setRequestHeader("Content-type", "text/plain");
     watson_server.onreadystatechange = function (x) {
         if (watson_server.readyState == XMLHttpRequest.DONE && watson_server.status == 200) {
@@ -14,11 +14,17 @@ function findContext(url4u) {
         }
     };
 
+    watson_server.send(type_of_request);
     watson_server.send(url4u);//This is the error
     return globalHatred;
-
 }
 
+function findSecureContext(url4u){
+    return findContext(url4u, "https", url4u);
+}
+function findContext(url4u){
+    return findUnknownContext(url4u, "http",url4u);
+}
 //For some reason, all images are retrieved but they're null after the halfway point. Please ignore this hack.
 single_run();
 
