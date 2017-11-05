@@ -8,7 +8,7 @@ function findContext(url4u) {
     watson_server.onreadystatechange = function (x) {
         if (watson_server.readyState == XMLHttpRequest.DONE && watson_server.status == 200) {
             stringRep = (watson_server.responseText);
-            console.log(stringRep);
+            //console.log(stringRep);
             globalHatred = stringRep;
             return stringRep;
         }
@@ -25,7 +25,6 @@ single_run();
 function single_run() {
     var x = document.getElementsByTagName("img");
     var body = document.getElementsByTagName("body");
-    console.log("1");
     var i = 0;
 
     while (x.length > i) {
@@ -39,10 +38,8 @@ function single_run() {
         console.log(x.item(i));
         if (x.item(i).getAttribute("title")) {
             if(x.item(i).getAttribute("alt")){
-                console.log("hi");
                 x.item(i).setAttribute("alt", x.item(i).getAttribute("title") + x.item(i).getAttribute("alt"));
             } else {
-                console.log("hiiii");
                 x.item(i).setAttribute("alt", x.item(i).getAttribute("title"));
             }
         }
