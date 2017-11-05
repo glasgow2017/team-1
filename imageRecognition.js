@@ -1,16 +1,14 @@
 //Expects the url of the image
 const express = require('express');
-
-var cors = require('cors');
-
 const app = express();
 
+var cors = require('cors');
 var router = express.Router();
 var uploadRouter = express.Router();
+var bodyParser = require('body-parser');
+var http = require('http');
 
 app.use(cors());
-
-var bodyParser = require('body-parser');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -25,7 +23,6 @@ var visual_recgnition = watson.visual_recognition({
 //
 // var Promise = require();
 
-var http = require('http');
 
 uploadRouter.post('/', function (req, res) {
     console.log(req.body);
@@ -35,10 +32,7 @@ uploadRouter.post('/', function (req, res) {
 });
 
 app.listen(8080);
-
 app.use('/analysis', router);
-
-
 app.use('/image', uploadRouter);
 
 router.get('/', function(req, res) {
@@ -52,7 +46,6 @@ function callback(str, res){
 }
 
 convertImageToText = function (imageURLToString, callback, res) {
-
     visual_recgnition.classify({url:imageURLToString}, function (err, resp) {
         if (err)
             console.log(err);
@@ -75,9 +68,6 @@ function parseReturnedValue(response) {
     console.log(str);
     return str;
 }
-
-
-
 
 function makeUnderstandableString(string){
     var strSplit = string.split(" ");
